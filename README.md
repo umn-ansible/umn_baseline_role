@@ -1,7 +1,7 @@
-Role Name
+Sample Role
 =========
 
-A brief description of the role goes here.
+This is an empty Ansible role to use as a reference or a source template for developing UMN Ansible Roles. It includes [Molecule](https://ansible.readthedocs.io/projects/molecule/) tests run by GitHub actions.
 
 Requirements
 ------------
@@ -32,7 +32,3 @@ License
 
 BSD
 
-Author Information
-------------------
-
-An optional section for the role authors to include contact information, or a website (HTML is not allowed).
