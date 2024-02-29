@@ -1,22 +1,26 @@
-Sample Role
+UMN RHEL9 Baseline
 =========
 
-This is an empty Ansible role to use as a reference or a source template for developing UMN Ansible Roles. It includes [Molecule](https://ansible.readthedocs.io/projects/molecule/) tests run by GitHub actions.
+This role provides miscellaneous baseline configurations the community agrees
+are helpful
+
+* Option to override shell timeout default of 900s (15min)
 
 Requirements
 ------------
 
-Any pre-requisites that may not be covered by Ansible itself or the role should be mentioned here. For instance, if the role uses the EC2 module, it may be a good idea to mention in this section that the boto package is required.
+None
 
 Role Variables
 --------------
 
-A description of the settable variables for this role should go here, including any variables that are in defaults/main.yml, vars/main.yml, and any variables that can/should be set via parameters to the role. Any variables that are read from other roles and/or the global scope (ie. hostvars, group vars, etc.) should be mentioned here as well.
+
+`shell_timeout_seconds:` (default `900`) Seconds before a shell session times out via `TMOUT=` environment variable set in /etc/profile.d/cis_profile.sh. Set to `0` to disable shell timeout completely.
 
 Dependencies
 ------------
 
-A list of other roles hosted on Galaxy should go here, plus any details in regards to parameters that may need to be set for other roles, or variables that are used from other roles.
+None
 
 Example Playbook
 ----------------
@@ -25,10 +29,9 @@ Including an example of how to use your role (for instance, with variables passe
 
     - hosts: servers
       roles:
-         - { role: username.rolename, x: 42 }
+         - { role: umn_baseline, shell_timeout_seconds: 0 }
 
 License
 -------
 
-BSD
-
+MIT

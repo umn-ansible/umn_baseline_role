@@ -1,2 +1,26 @@
 ---
-# tasks file for umn_sample_role
+- stat: path=/etc/profile.d/cis_profile.sh
+  register: cis_profile_stat
+  tags: tmout
+
+- name: Comment out default TMOUT setting in /etc/profile.d/cis_profile.sh
+  ansible.builtin.lineinfile:
+    path: /etc/profile.d/cis_profile.sh
+    regexp: '^(readonly TMOUT={{ shell_timeout_seconds_default }} .*)'
+    line: '#\1'
+    backrefs: yes
+    state: present
+  when: cis_profile_stat.stat.exists and shell_timeout_seconds != shell_timeout_seconds_default
+  tags: tmout
+
+- name: Set a TMOUT in /etc/profile.d/cis_profile.sh
+  ansible.builtin.lineinfile:
+    path: /etc/profile.d/cis_profile.sh
+    regexp: '^readonly TMOUT='
+    line: readonly TMOUT={{ shell_timeout_seconds }} ; export TMOUT
+    state: present
+    create: true
+  # Run this if the original file exists, or if we actually want a timeout
+  # but don't bother creating the file for a value of zero
+  when: cis_profile_stat.stat.exists or shell_timeout_seconds > 0
+  tags: tmout

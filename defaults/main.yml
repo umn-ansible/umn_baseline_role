@@ -1,2 +1,3 @@
 ---
-# defaults file for umn_sample_role
+shell_timeout_seconds: 900
+shell_timeout_seconds_default: 900
