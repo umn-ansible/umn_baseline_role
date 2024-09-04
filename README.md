@@ -15,7 +15,8 @@ Role Variables
 --------------
 
 
-`shell_timeout_seconds:` (default `900`) Seconds before a shell session times out via `TMOUT=` environment variable set in /etc/profile.d/cis_profile.sh. Set to `0` to disable shell timeout completely.
+- `shell_timeout_seconds:` (default `900`) Seconds before a shell session times out via `TMOUT=` environment variable set in /etc/profile.d/cis_profile.sh. Set to `0` to disable shell timeout completely.
+- `system_default_umask`: (default `077`) Set default umask for shell users in /etc/login.defs. NOTE: Per NIST recommendation, OIT sets at highly restrictive `077`, prior systems defaulted to `027`
 
 Dependencies
 ------------
