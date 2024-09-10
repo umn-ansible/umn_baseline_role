@@ -37,3 +37,25 @@
   tags:
     - baseline
     - umask
+
+- name: Install mail handling
+  package:
+    state: present
+    name: '{{ item }}'
+  loop:
+    - '{{ baseline_mta_packagename }}'
+    - '{{ baseline_mail_packagename }}'
+  when: baseline_install_mta
+  tags:
+    - baseline
+    - mail
+
+- name: Enable MTA
+  systemd_service:
+    name: '{{ baseline_mta_servicename }}'
+    enabled: true
+    state: started
+  when: baseline_install_mta
+  tags:
+    - baseline
+    - mail
