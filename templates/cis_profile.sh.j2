@@ -1,0 +1,5 @@
+# ANSIBLE MANAGED
+if ! { [ -n "$TMUX" ]; } then
+  # Possibly modified from OIT defaults
+  readonly TMOUT={{ shell_timeout_seconds|default(shell_timeout_seconds_default) }} ; export TMOUT
+fi
