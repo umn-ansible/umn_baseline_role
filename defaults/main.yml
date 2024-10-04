@@ -7,3 +7,9 @@ baseline_install_mta: false
 baseline_mta_packagename: postfix
 baseline_mta_servicename: postfix
 baseline_mail_packagename: s-nail
+
+baseline_packages:
+  - tmux
+  - htop
+  - git
+  - vim-common

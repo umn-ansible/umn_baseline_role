@@ -26,13 +26,19 @@
     - baseline
     - umask
 
+- name: Install some base common packages
+  package:
+    state: present
+    name: '{{ baseline_packages }}'
+  tags:
+    - baseline
+
 - name: Install mail handling
   package:
     state: present
-    name: '{{ item }}'
-  loop:
-    - '{{ baseline_mta_packagename }}'
-    - '{{ baseline_mail_packagename }}'
+    name:
+      - '{{ baseline_mta_packagename }}'
+      - '{{ baseline_mail_packagename }}'
   when: baseline_install_mta
   tags:
     - baseline
