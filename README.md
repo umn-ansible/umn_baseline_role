@@ -17,6 +17,7 @@ Role Variables
 
 - `shell_timeout_seconds:` (default `900`) Seconds before a shell session times out via `TMOUT=` environment variable set in /etc/profile.d/cis_profile.sh. Set to `0` to disable shell timeout completely.
 - `system_default_umask`: (default `077`) Set default umask for shell users in /etc/login.defs. NOTE: Per NIST recommendation, OIT sets at highly restrictive `077`, prior systems defaulted to `027`
+- `tmux_autodetach`: (default `true`) Allow profile.d script to disconnect tmux sessions after a timeout
 - `baseline_install_mta`: (default `false`) Whether to install email handling, by default that is `postfix` but packages can be changed
 - `baseline_packages`: (see `defaults/main.yml`) RPM packages you would like installed on every machine
 

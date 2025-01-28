@@ -17,6 +17,34 @@
     - baseline
     - tmout
 
+- stat:
+    path: /etc/profile.d/tmux_autodetach.sh
+  register: tmux_killer_stat
+  tags:
+    - baseline
+    - tmout
+
+- name: Disable tmux auto-disconnect
+  copy:
+    src: /etc/profile.d/tmux_autodetach.sh
+    dest: /etc/profile.d/tmux_autodetach.sh~
+    force: true
+    remote_src: true
+  when: tmux_killer_stat.stat.exists and not tmux_autodetach
+  changed_when: false
+  tags:
+    - baseline
+    - tmout
+
+- name: Remove tmux killer
+  file:
+    path: /etc/profile.d/tmux_autodetach.sh
+    state: absent
+  when: not tmux_autodetach
+  tags:
+    - baseline
+    - tmout
+
 - name: Configure default umask
   ansible.builtin.lineinfile:
     path: /etc/login.defs

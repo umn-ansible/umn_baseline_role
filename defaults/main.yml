@@ -1,6 +1,7 @@
 ---
 shell_timeout_seconds: 900
 shell_timeout_seconds_default: 900
+tmux_autodetach: true
 system_default_umask: '077'
 
 baseline_install_mta: false
